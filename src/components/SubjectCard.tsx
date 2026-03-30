@@ -52,6 +52,12 @@ const SubjectCard = ({ data }: SubjectCardProps) => {
                 {data.deepeningLink.reason}
               </p>
             </div>
+            <div>
+              <h4 className="text-sm font-bold text-teal-700 mb-1">연계 확장</h4>
+              <p className="text-sm text-muted-foreground leading-body">
+                {data.deepeningLink.connectionExpansion}
+              </p>
+            </div>
           </div>
           <div className="p-5 bg-white border-l-2 border-teal-400 rounded-r-lg">
             <h4 className="text-sm font-bold text-teal-700 mb-2">실행 설계</h4>
