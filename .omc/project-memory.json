@@ -172,15 +172,45 @@
     },
     {
       "path": "src\\pages\\Index.tsx",
-      "accessCount": 1,
-      "lastAccessed": 1774705647159,
+      "accessCount": 2,
+      "lastAccessed": 1774865158902,
       "type": "file"
     },
     {
       "path": "",
-      "accessCount": 1,
-      "lastAccessed": 1774707355314,
+      "accessCount": 2,
+      "lastAccessed": 1774865163135,
       "type": "directory"
+    },
+    {
+      "path": "src\\data\\subjectData.ts",
+      "accessCount": 2,
+      "lastAccessed": 1774866442606,
+      "type": "file"
+    },
+    {
+      "path": "src\\components\\SubjectCard.tsx",
+      "accessCount": 2,
+      "lastAccessed": 1774866451526,
+      "type": "file"
+    },
+    {
+      "path": "C:\\Users\\user\\.claude\\projects\\D--Claude-Workspace\\memory\\MEMORY.md",
+      "accessCount": 2,
+      "lastAccessed": 1774868975851,
+      "type": "file"
+    },
+    {
+      "path": "src",
+      "accessCount": 1,
+      "lastAccessed": 1774865167511,
+      "type": "directory"
+    },
+    {
+      "path": "C:\\Users\\user\\.claude\\projects\\D--Claude-Workspace\\memory\\project_ksh2_session_20260330.md",
+      "accessCount": 1,
+      "lastAccessed": 1774868959549,
+      "type": "file"
     }
   ],
   "userDirectives": []

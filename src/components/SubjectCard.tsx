@@ -1,133 +1,95 @@
 import { SubjectResearch } from "@/data/subjectData";
 
-interface SubjectCardProps {
+interface Props {
   data: SubjectResearch;
 }
 
-const SubjectCard = ({ data }: SubjectCardProps) => {
+const SubjectDetail = ({ data }: Props) => {
   return (
-    <div className="subject-card max-w-4xl mx-auto p-8 md:p-12 bg-card text-card-foreground">
-      {/* Header */}
-      <header className="mb-12 border-b pb-8 border-border">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-display mb-2">
-          <span className="text-indigo-700">과목:</span> {data.subject}
-        </h2>
-        <p className="text-lg md:text-xl text-muted-foreground font-medium">
-          주제: {data.topic}
-        </p>
-      </header>
+    <div className="px-6 py-6 space-y-6">
 
-      {/* Previous Activity */}
-      <section className="mb-10 bg-slate-50 p-6 rounded-xl border border-slate-200">
-        <h3 className="text-xs font-bold uppercase tracking-widest text-slate-600 mb-3">
-          이전 활동
-        </h3>
-        <div className="p-4 bg-white rounded-lg text-slate-700 leading-body border border-slate-100">
-          {data.previousActivity}
+      {/* 이전 활동 */}
+      <section className="bg-slate-50 rounded-xl p-5 border border-slate-200">
+        <h3 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">이전 활동</h3>
+        <p className="text-sm text-slate-700 leading-relaxed">{data.previousActivity}</p>
+      </section>
+
+      {/* 심화 연계 */}
+      <section className="bg-teal-50 rounded-xl p-5 border border-teal-200">
+        <h3 className="text-xs font-bold uppercase tracking-widest text-teal-600 mb-4">심화 연계</h3>
+        <div className="space-y-3">
+          {[
+            { label: "출발점", value: data.deepeningLink.startingPoint },
+            { label: "궁금증 · 아쉬움", value: data.deepeningLink.curiosity },
+            { label: "선택 이유", value: data.deepeningLink.reason },
+            { label: "연계 확장", value: data.deepeningLink.connectionExpansion },
+            { label: "실행 설계", value: data.deepeningLink.executionDesign },
+          ].map(({ label, value }) => (
+            <div key={label} className="flex gap-3">
+              <span className="flex-shrink-0 text-xs font-bold text-teal-600 w-20 pt-0.5">{label}</span>
+              <p className="text-sm text-slate-700 leading-relaxed">{value}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Deepening Link */}
-      <section className="mb-10 bg-teal-50 p-6 rounded-xl border border-teal-200">
-        <h3 className="text-xs font-bold uppercase tracking-widest text-teal-700 mb-4">
-          심화 연계
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <div>
-              <h4 className="text-sm font-bold text-teal-700 mb-1">출발점</h4>
-              <p className="text-sm text-muted-foreground leading-body">
-                {data.deepeningLink.startingPoint}
-              </p>
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-teal-700 mb-1">궁금증 · 아쉬움</h4>
-              <p className="text-sm text-muted-foreground leading-body">
-                {data.deepeningLink.curiosity}
-              </p>
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-teal-700 mb-1">선택 이유 / 의미</h4>
-              <p className="text-sm text-muted-foreground leading-body">
-                {data.deepeningLink.reason}
-              </p>
-            </div>
-            <div>
-              <h4 className="text-sm font-bold text-teal-700 mb-1">연계 확장</h4>
-              <p className="text-sm text-muted-foreground leading-body">
-                {data.deepeningLink.connectionExpansion}
-              </p>
-            </div>
-          </div>
-          <div className="p-5 bg-white border-l-2 border-teal-400 rounded-r-lg">
-            <h4 className="text-sm font-bold text-teal-700 mb-2">실행 설계</h4>
-            <p className="text-sm text-muted-foreground leading-body font-mono text-xs">
-              {data.deepeningLink.executionDesign}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 1st Plan */}
-      <section className="mb-10 bg-indigo-50 p-6 rounded-xl border border-indigo-200">
-        <h3 className="text-xs font-bold uppercase tracking-widest text-indigo-700 mb-6">
-          탐구 계획 및 실행
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      {/* 탐구 계획 */}
+      <section className="bg-indigo-50 rounded-xl p-5 border border-indigo-200">
+        <h3 className="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-4">탐구 계획</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
           <div>
-            <span className="block text-[10px] font-bold text-indigo-600 uppercase mb-2">
-              준비물
-            </span>
-            <ul className="text-sm space-y-1 list-disc list-inside text-foreground">
+            <p className="text-xs font-bold text-indigo-500 uppercase mb-2">준비물</p>
+            <ul className="text-sm space-y-1 text-slate-700">
               {data.plan.materials.map((m, i) => (
-                <li key={i}>{m}</li>
+                <li key={i} className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0" />
+                  {m}
+                </li>
               ))}
             </ul>
           </div>
           <div>
-            <span className="block text-[10px] font-bold text-indigo-600 uppercase mb-2">
-              절차
-            </span>
-            <ol className="text-sm space-y-2 text-foreground font-mono tabular-nums">
+            <p className="text-xs font-bold text-indigo-500 uppercase mb-2">절차</p>
+            <ol className="text-sm space-y-1 text-slate-700">
               {data.plan.procedure.map((p, i) => (
-                <li key={i}>
-                  {i + 1}. {p}
+                <li key={i} className="flex gap-2">
+                  <span className="flex-shrink-0 text-indigo-400 font-bold">{i + 1}.</span>
+                  {p}
                 </li>
               ))}
             </ol>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-indigo-200">
+        <div className="pt-4 border-t border-indigo-200 grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <span className="block text-[10px] font-bold text-slate-600 uppercase mb-2">
-              측정값 및 결과
-            </span>
-            <p className="text-sm font-mono text-foreground mb-3">{data.plan.measurements}</p>
-            <p className="text-sm text-muted-foreground">{data.plan.results}</p>
+            <p className="text-xs font-bold text-slate-500 uppercase mb-1">측정 및 결과</p>
+            <p className="text-sm text-slate-700 leading-relaxed">{data.plan.measurements}</p>
+            <p className="text-sm text-slate-500 mt-1 leading-relaxed">{data.plan.results}</p>
           </div>
           <div>
-            <span className="block text-[10px] font-bold text-rose-600 uppercase mb-2">
-              오류 및 개선점
-            </span>
-            <p className="text-sm text-muted-foreground leading-body">{data.plan.errors}</p>
+            <p className="text-xs font-bold text-rose-500 uppercase mb-1">오류 및 개선점</p>
+            <p className="text-sm text-slate-700 leading-relaxed">{data.plan.errors}</p>
           </div>
         </div>
       </section>
 
-      {/* Follow-up Books */}
-      <footer className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {data.followUpBooks.map((book, i) => (
-          <div key={i} className="p-4 border border-amber-200 rounded-lg bg-amber-50">
-            <span className="text-[10px] font-bold text-amber-700 uppercase">
-              후속 도서 {String(i + 1).padStart(2, "0")}
-            </span>
-            <h4 className="text-sm font-bold mt-1 text-foreground">{book.title}</h4>
-            <p className="text-xs text-muted-foreground mt-1">{book.reason}</p>
+      {/* 후속 도서 */}
+      {data.followUpBooks.length > 0 && (
+        <section>
+          <h3 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">후속 도서</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {data.followUpBooks.map((book, i) => (
+              <div key={i} className="p-4 border border-amber-200 rounded-xl bg-amber-50">
+                <p className="text-xs font-bold text-amber-600 uppercase mb-1">도서 {i + 1}</p>
+                <p className="text-sm font-bold text-slate-800">{book.title}</p>
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">{book.reason}</p>
+              </div>
+            ))}
           </div>
-        ))}
-      </footer>
+        </section>
+      )}
     </div>
   );
 };
 
-export default SubjectCard;
+export default SubjectDetail;
